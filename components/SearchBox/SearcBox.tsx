@@ -99,7 +99,7 @@ function SearchBox() {
       <div className=' w-full h-[195px] overflow-y-auto bg-white rounded-[5px] mt-1'>
         {searchData !== "" ?
           <div>
-            {filteredBlogs.map((blog: any, index: number) => {
+            {filteredBlogs?.map((blog: any, index: number) => {
               const { matchedFields } = blog;
 
               const Matched = matchedFields && Object.keys(matchedFields).length > 0;
@@ -136,7 +136,7 @@ function SearchBox() {
             })}
           </div> :
           <div>
-            {filteredBlogs.map((blog: any, index: number) => {
+            {filteredBlogs?.map((blog: any, index: number) => {
 
 
               return (
