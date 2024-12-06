@@ -14,7 +14,7 @@ type Blog = {
 
 function Blogs() {
     const router = useRouter();
-    const [datas, setDatas] = useState<Blog[] | any>([]);
+    const [datas, setDatas] = useState<Blog>();
     async function GetStoreData() {
         try {
             const cookie = await getCookie("datas");
@@ -84,10 +84,10 @@ function Blogs() {
             <div className='border-2 border-gray-500 p-2 rounded-[5px]'>
                 <div className='sm:flex sm:justify-between mb-9'>
                     <p className='font-semibold text-[30px]'>{datas?.title}</p>
-                    <p>Date :- {datas.date}</p>
+                    <p>Date :- {datas?.date}</p>
                 </div>
-                <p className='font-[600] text-[15px]'>{datas.content}</p>
-                <p>Author :- {datas.author}</p>
+                <p className='font-[600] text-[15px]'>{datas?.content}</p>
+                <p>Author :- {datas?.author}</p>
             </div>
         </div>
     )
