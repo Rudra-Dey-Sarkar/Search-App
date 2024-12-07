@@ -96,6 +96,7 @@ function SearchBox() {
         </svg>
       </div>
 
+
       <div className=' w-full h-[195px] overflow-y-auto bg-white rounded-[5px] mt-1'>
         {data?.length > 0 ?
           <div>
