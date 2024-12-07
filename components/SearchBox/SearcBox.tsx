@@ -53,9 +53,10 @@ function SearchBox() {
         const response = await fetch('/api/blogs'); // Adjusted to the correct API route
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
+        }else{
+          const result = await response.json(); // Parse the JSON from the response
+          setData(result); // Set the data in the state
         }
-        const result = await response.json(); // Parse the JSON from the response
-        setData(result); // Set the data in the state
       } catch (error) {
         console.log('Error fetching data:', error); // Log errors if any
       }
@@ -137,10 +138,7 @@ function SearchBox() {
           </div> :
           <div>
             {filteredBlogs?.map((blog: any, index: number) => {
-
-
               return (
-
                 <div key={index} className=" border-b font-semibold hover:bg-gray-200 hover:cursor-pointer" onClick={() => StoreData(blog)}>
                   {blog?.title && (
                     <div className='p-2'>
