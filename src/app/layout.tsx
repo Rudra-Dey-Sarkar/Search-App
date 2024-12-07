@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -16,6 +17,9 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Search App",
   description: "Search app to search and read tech blogs",
+  icons: {
+    icon: "./favicon.png",
+  },
 };
 
 export default function RootLayout({
