@@ -163,7 +163,7 @@ function SearchBox() {
           </div>
           :
           <div className='w-full h-full flex justify-center items-center'>
-            <p className='font-semibold text-[20px]'>Loading.......</p>
+            <p className='font-semibold text-[22px]'>Loading.......</p>
           </div>
         }
 
