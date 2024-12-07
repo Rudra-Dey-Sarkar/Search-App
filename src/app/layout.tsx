@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "Search App",
   description: "Search app to search and read tech blogs",
   icons: {
-    icon: "./favicon.png",
+    icon: "/favicon.png",
   },
 };
 
