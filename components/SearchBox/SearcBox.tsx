@@ -53,10 +53,9 @@ function SearchBox() {
         const response = await fetch('/api/blogs'); // Adjusted to the correct API route
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
-        } else {
-          const result = await response.json(); // Parse the JSON from the response
-          setData(result); // Set the data in the state
         }
+        const result = await response.json(); // Parse the JSON from the response
+          setData(result); // Set the data in the state
       } catch (error) {
         console.log('Error fetching data:', error); // Log errors if any
       }
@@ -98,59 +97,52 @@ function SearchBox() {
       </div>
 
       <div className=' w-full h-[195px] overflow-y-auto bg-white rounded-[5px] mt-1'>
-        {searchData !== "" ?
+        {data?.length > 0 ?
           <div>
-            <div>
-              {filteredBlogs ?
-                <div>
-                  {filteredBlogs?.map((blog: any, index: number) => {
-                    const { matchedFields } = blog;
-
-                    const Matched = matchedFields && Object.keys(matchedFields).length > 0;
-
-                    return (
-                      Matched ? (
-                        <div key={index} className="border-b font-semibold hover:bg-gray-200 hover:cursor-pointer"
-                          onClick={() => {
-                            StoreData(blog);
-                          }}>
-                          {matchedFields?.author || matchedFields?.tags && matchedFields?.tags?.length > 0 ? (
-                            <div className='bg-green-200 p-2'>
-                              <p>Title:- {blog?.title}</p>
-                              <p>Content:- {blog?.content}</p>
-                            </div>
-                          ) : (
-                            <div>
-                              {matchedFields?.title && (
-                                <div className='bg-green-200 p-2'>
-                                  <p>Title:- {matchedFields?.title}</p>
-                                </div>
-                              )}
-                              {matchedFields?.content && (
-                                <div className='bg-green-200 p-2'>
-                                  <p>Content:- {matchedFields?.content}</p>
-                                </div>
-                              )}
-
-                            </div>
-                          )}
-                        </div>
-                      ) : null
-                    );
-                  })}
-                </div>
-                :
-                <div>
-                  <p>Loading...</p>
-                </div>
-              }
-            </div>
-          </div> :
-          <div>
-            {filteredBlogs ?
+            {searchData !== "" ?
               <div>
                 {filteredBlogs?.map((blog: any, index: number) => {
+                  const { matchedFields } = blog;
+
+                  const Matched = matchedFields && Object.keys(matchedFields).length > 0;
+
                   return (
+                    Matched ? (
+                      <div key={index} className="border-b font-semibold hover:bg-gray-200 hover:cursor-pointer"
+                        onClick={() => {
+                          StoreData(blog);
+                        }}>
+                        {matchedFields?.author || matchedFields?.tags && matchedFields?.tags?.length > 0 ? (
+                          <div className='bg-green-200 p-2'>
+                            <p>Title:- {blog?.title}</p>
+                            <p>Content:- {blog?.content}</p>
+                          </div>
+                        ) : (
+                          <div>
+                            {matchedFields?.title && (
+                              <div className='bg-green-200 p-2'>
+                                <p>Title:- {matchedFields?.title}</p>
+                              </div>
+                            )}
+                            {matchedFields?.content && (
+                              <div className='bg-green-200 p-2'>
+                                <p>Content:- {matchedFields?.content}</p>
+                              </div>
+                            )}
+
+                          </div>
+                        )}
+                      </div>
+                    ) : null
+                  );
+                })}
+              </div> :
+              <div>
+                {filteredBlogs?.map((blog: any, index: number) => {
+
+
+                  return (
+
                     <div key={index} className=" border-b font-semibold hover:bg-gray-200 hover:cursor-pointer" onClick={() => StoreData(blog)}>
                       {blog?.title && (
                         <div className='p-2'>
@@ -167,13 +159,14 @@ function SearchBox() {
                   );
                 })}
               </div>
-              :
-              <div>
-                <p>Loading...</p>
-              </div>}
-
+            }
+          </div>
+          :
+          <div className='w-full h-full flex justify-center items-center'>
+            <p className='font-semibold text-[20px]'>Loading.......</p>
           </div>
         }
+
       </div>
 
     </div>
