@@ -138,9 +138,7 @@ function SearchBox() {
                 })}
               </div> :
               <div>
-                {filteredBlogs?.map((blog: any, index: number) => {
-
-
+                {filteredBlogs?.slice(0,7).map((blog: any, index: number) => {
                   return (
 
                     <div key={index} className=" border-b font-semibold hover:bg-gray-200 hover:cursor-pointer" onClick={() => StoreData(blog)}>
